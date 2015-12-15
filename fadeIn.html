@@ -1,0 +1,100 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<script type="text/javascript">
+
+		function setOpacity(ele,value){
+			if(ele.style.opacity != undefined){
+				ele.style.opacity = value/100;
+			} else{
+				ele.style.filter = "alpha(opacity = " + value + ")";
+			}
+		}
+
+
+		function fadeIn(ele,value,speed){
+
+			var opa  =  ele.style.filter.match(/\d+/) && ele.style.filter.match(/\d+/)[0] ||ele.style.opacity;
+
+			if(opa && opa <2){  //未设置是返回 空
+					opa *= 100;
+			}else{
+				opa = 0;
+			}
+			var count = speed/1000;
+			if(opa > value){
+				return;
+			}
+			var count  = speed/1000;
+			var inch = value/count;
+			setTimeout(function(){
+				opa += inch;
+				opa = (opa > value)? value:opa;
+				setOpacity(ele,opa);
+
+				if(opa < value){
+					setTimeout(arguments.callee,1000);
+				}
+			},1000)
+		}
+
+
+		function fadeOut(ele,value,speed){
+			var opa  =  ele.style.filter.match(/\d+/) && ele.style.filter.match(/\d+/)[0] ||ele.style.opacity;
+
+			if(opa && opa <2){  //未设置是返回 空 <=1
+					opa *= 100;
+			}else{
+				opa = 0;
+			}
+			console.log(opa);
+			var count = speed/1000;
+			if(opa < value){
+				return;
+			}
+			var inch = (opa-value)/count;
+
+			
+			setTimeout(function(){
+				opa-=inch;
+				opa = (opa < value) ? value:opa;
+				setOpacity(ele,opa);	
+				if(opa>value){
+					setTimeout(arguments.callee,1000);
+				}
+			})
+		}
+
+		window.onload = function(){
+
+
+			var input  = document.getElementsByTagName("input")[0];
+
+			var btn  = document.querySelectorAll("input[type='button']");
+
+			btn[0].onclick = function(){
+				// setOpacity(input,40);
+				fadeIn(input,100,5000)
+				// fadeOut(input,14,5000)
+			}
+			btn[1].onclick = function(){
+				// setOpacity(input,40);
+				fadeOut(input,0,5000)
+				// fadeOut(input,14,5000)
+			}
+			
+			// setOpacity(input,40);
+		}
+	</script>
+</head>
+<body>
+
+	<input type="text" value="haha" />
+	<br/>
+	<input type="button" value="显示" />
+	<input type="button" value="隐藏" />
+	
+</body>
+</html>
