@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+		<script type="text/javascript">
+
+		//	jquery ready DOM加载完毕
+		//  onload 所有资源加载完毕（包括图片）
+
+
+		// 例子是想说明 即使资源错误，onload时间已久会执行
+			window.onload = function(){
+				console.log("success");
+			}
+
+
+			$(function(){
+				console.log("jquery success")
+			})
+
+		</script>
+
+		<img src="1.jpg">
+	
+</body>
+</html>
