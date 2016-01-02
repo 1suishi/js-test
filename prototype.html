@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+
+	<script type="text/javascript">
+
+		function Person(){
+			this.name = "p";
+		}
+
+		Person.prototype.sayName = function(){
+			console.log(this.name);
+		}
+
+
+		function Friend(){
+			this.name = "f";
+		}
+
+		Friend.prototype = new Person();
+		// Friend.prototype.constructor = Friend;
+
+
+		var f = new Friend();
+
+		f.sayName();
+
+		// 原型只有 对象/类 有 ， 实例没有prototype 属性
+		Friend.prototype.constructor.prototype.sayAge = function(){  // 在原型的原型上添加函数
+			console.log("25");
+		}
+		f.sayAge();
+
+		console.log(f.prototype)  // undefined
+		console.log(Friend.prototype)
+	</script>
+	
+</body>
+</html>
