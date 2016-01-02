@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<script type="text/javascript">
+
+		var img  = new Image();
+		img.src = "2.jpg";
+		img.onload = function(){
+
+			document.body.appendChild(img)
+			alert("done");
+		}
+		img.onerror = function(){
+			img.src = "1.jpg"
+			alert("error");
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
